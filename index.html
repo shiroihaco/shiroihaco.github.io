@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>haco</title>
@@ -100,7 +96,7 @@
       background: var(--text);
     }
 
-    .site-url, .hits {
+    .site-url {
       font-size: 12px;
       color: var(--muted);
       letter-spacing: 0.06em;
@@ -171,7 +167,7 @@
       font-size: 15px;
       margin-bottom: 18px;
     }
-    .text-block strong { font-weight: 500; }
+    .text-block strong { font-weight: 700; }
     .text-block mark   { background: var(--mark-bg); padding: 0 4px; }
     .text-block em     { font-style: italic; }
     .red               { color: var(--accent); }
@@ -243,6 +239,10 @@
     }
     .about-table tr { border-bottom: 1px solid var(--border); }
     .about-table td { padding: 14px 0; vertical-align: top; }
+    .about-table td:last-child {
+      color: var(--text);
+      line-height: 1.7;
+    }
     .about-table td:first-child {
       color: var(--muted);
       font-size: 12px;
@@ -342,22 +342,13 @@
 
       <span class="badge">about</span>
       <div class="text-block">
-        <p>夢創作を中心に活動しています。無断転載・無断使用はご遠慮ください。</p>
-        <p><strong>spanで太字</strong></p>
-        <p><mark>markでマーカー</mark></p>
-        <p><em>emで強調</em></p>
-        <p><span class="red">strongで重要事項</span></p>
+        <p><strong style="color:var(--accent);">「こちらは版権キャラ×創作キャラの二次創作サイト」です。</strong></p>
+        <p>※公式および各関係者様とは、一切関係ありません。</p>
+        <p>当サイト内の画像等の無断転載・無断使用を固く禁じます。</p>
+        <p>No unauthorized reproduction.</p>
+        <p>個人の倉庫サイトですので相互リンク等は募集しておりませんが、感想は随時募集しています。</p>
+        <p>ブクマ等はご自由にどうぞ！</p>
       </div>
-
-      <p style="margin-bottom:14px;">
-        <a href="#top" class="section-link">セクション内リンク</a>
-      </p>
-      <p style="margin-bottom:28px;">
-        <span class="link-box">class="link" リンク</span>
-      </p>
-
-      <p class="center" style="font-size:13px;color:var(--muted);margin-bottom:10px;">div class="center"で中央揃え</p>
-      <p class="right"  style="font-size:13px;color:var(--muted);">div class="right"で右揃え</p>
 
       <hr class="divider">
 
@@ -382,20 +373,21 @@
 
       <span class="badge">profile</span>
       <table class="about-table">
-<tr>
-  <td>name</td>
-  <td>白井（シロイ）</td>
-</tr>
-<tr>
-  <td>about</td>
-  <td>動物とギャグマンガが好き<br>
-  BLEACHの恋ルキに脳を焼かれているのででかい男と小さい女のCPが癖<br></td>
-</tr>
+        <tr>
+          <td>name</td>
+          <td>白井（シロイ）</td>
+        </tr>
+        <tr>
+          <td>note</td>
+          <td>動物とギャグマンガが好き。BLEACHの恋ルキに脳を焼かれているので、でかい男と小さい女のCPが癖。</td>
+        </tr>
         <tr>
           <td>links</td>
           <td>
-            <a href="http://pixiv.net/users/11138866" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">pixiv</a>
-            <a href="https://twitter.com/shiroi_45" target="_blank" rel="noopener" class="link-box">X (Twitter)</a>
+            <a href="http://shirohaco.s325.xrea.com/illust/tegalog.cgi?mode=gallery" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">絵・漫画</a>
+            <a href="https://example.com/novel" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">文</a>
+            <a href="#" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">pixiv</a>
+            <a href="#" target="_blank" rel="noopener" class="link-box">X (Twitter)</a>
           </td>
         </tr>
       </table>
