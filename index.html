@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>haco</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,171 +26,171 @@
       font-weight: 300;
       background: var(--bg);
       color: var(--text);
-      font-size: 13px;
-      letter-spacing: 0.04em;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
     }
 
-    /* ==============================
-       2カラムレイアウト
-    ============================== */
-    .wrapper {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      min-height: 100vh;
-    }
+    a { color: inherit; }
 
     /* ==============================
-       サイドバー
+       ヘッダー
     ============================== */
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 40px 16px;
+    .site-header {
+      position: relative;
+      padding: 56px 24px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      border-right: 1px solid var(--border);
     }
 
-    /* 四隅コーナーライン */
-    .corner-box {
-      position: relative;
-      width: 100%;
-      padding: 28px 16px;
+    .site-title {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 4rem;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    /* PC: 横並びナビ */
+    .main-nav {
       display: flex;
+      gap: 36px;
+      margin-bottom: 28px;
+    }
+    .main-nav a {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      padding: 6px 2px;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .main-nav a:hover  { color: var(--text); }
+    .main-nav a:active { color: var(--accent); }
+
+    /* ハンバーガーボタン（PCでは非表示・右上固定） */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      justify-content: center;
+      gap: 5px;
+      z-index: 100;
     }
-    .corner-box::before,
-    .corner-box::after {
-      content: '';
-      position: absolute;
-      width: 24px;
-      height: 24px;
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--text);
     }
-    .corner-box::before { top:0; left:0;  border-top:1px solid var(--border); border-left:1px solid var(--border); }
-    .corner-box::after  { top:0; right:0; border-top:1px solid var(--border); border-right:1px solid var(--border); }
-    .corner-bl, .corner-br {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-    }
-    .corner-bl { bottom:0; left:0;  border-bottom:1px solid var(--border); border-left:1px solid var(--border); }
-    .corner-br { bottom:0; right:0; border-bottom:1px solid var(--border); border-right:1px solid var(--border); }
 
-    .sidebar-img-placeholder {
-      width: 150px;
-      height: 150px;
+    .site-url, .hits {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    /* ==============================
+       TOPビジュアル
+    ============================== */
+    .top-visual {
+      width: 100%;
+      max-height: 420px;
+      overflow: hidden;
+      margin-top: 40px;
+    }
+    .top-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .top-visual-placeholder {
+      width: 100%;
+      height: 320px;
+      margin-top: 40px;
       background: #f0eeeb;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--muted);
-      font-size: 10px;
+      font-size: 13px;
       letter-spacing: 0.1em;
-    }
-    .sidebar-img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .site-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2.6rem;
-      color: var(--text);
-      line-height: 1;
-    }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      width: 100%;
-    }
-    nav a {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      padding: 6px 4px;
-      transition: color 0.15s, background 0.15s;
-      border-radius: 2px;
-    }
-    nav a:hover  { color: var(--text); }
-    nav a:active { background: var(--hover-bg); }
-
-    .site-url, .hits {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
     }
 
     /* ==============================
-       メインコンテンツ
+       メインコンテンツ（中央寄せ・縦に流れる）
     ============================== */
     .main {
-      padding: 48px 56px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 100px;
     }
 
     .section {
-      margin-bottom: 64px;
+      margin-bottom: 80px;
     }
 
     .section-title {
       font-family: 'Pinyon Script', cursive;
-      font-size: 2rem;
+      font-size: 2.6rem;
       color: var(--text);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       line-height: 1.2;
     }
 
     .badge {
       display: inline-block;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      padding: 3px 10px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      padding: 4px 12px;
       border: 1px solid var(--border);
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .text-block {
-      line-height: 2;
-      font-size: 12px;
-      margin-bottom: 16px;
+      line-height: 1.7;
+      font-size: 15px;
+      margin-bottom: 18px;
     }
-    .text-block strong { font-weight: 400; }
-    .text-block mark   { background: var(--mark-bg); padding: 0 3px; }
+    .text-block strong { font-weight: 500; }
+    .text-block mark   { background: var(--mark-bg); padding: 0 4px; }
     .text-block em     { font-style: italic; }
     .red               { color: var(--accent); }
 
     .divider {
       border: none;
       border-top: 1px solid var(--border);
-      margin: 20px 0;
+      margin: 28px 0;
     }
 
-    /* セクション内リンク */
     .section-link {
       color: var(--muted);
       text-decoration: underline;
-      text-underline-offset: 3px;
-      font-size: 12px;
+      text-underline-offset: 4px;
+      font-size: 14px;
     }
     .section-link:hover { color: var(--text); }
 
-    /* マーカー風リンクボックス */
     .link-box {
       display: inline-block;
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.1em;
-      padding: 2px 8px;
+      padding: 4px 12px;
       background: var(--mark-bg);
       color: var(--text);
       text-decoration: none;
@@ -200,106 +200,97 @@
     .link-box:hover  { background: #dedad5; }
     .link-box:active { background: #d0cbc5; }
 
-    /* お知らせリスト */
+    /* お知らせリスト（独立したボックス） */
+    .info-box {
+      background: var(--mark-bg);
+      color: var(--text);
+      padding: 32px 28px;
+      margin: 28px 0;
+    }
+    .info-box-title {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
     .info-list { display: flex; flex-direction: column; }
     .info-item {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       align-items: baseline;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      font-size: 14px;
     }
+    .info-item:last-child { border-bottom: none; }
     .info-date {
       color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      min-width: 72px;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      min-width: 88px;
       flex-shrink: 0;
     }
-
-    /* イラストグリッド */
-    .illust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .category-card {
-      border: 1px solid var(--border);
-      padding: 18px 16px;
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: background 0.15s;
-    }
-    .category-card:hover  { background: #fafafa; }
-    .category-card:active { background: var(--hover-bg); }
-    .cat-name  { font-size: 11px; letter-spacing: 0.16em; }
-    .cat-sub   { font-size: 10px; color: var(--muted); }
-    .cat-arrow { font-size: 10px; color: var(--muted); margin-top: 6px; }
-
-    /* ノベルリスト */
-    .novel-list { display: flex; flex-direction: column; }
-    .novel-item {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      font-size: 12px;
-      transition: background 0.12s;
-    }
-    .novel-item:hover  { background: #fafafa; }
-    .novel-item:active { background: var(--hover-bg); }
-    .novel-num   { color: var(--muted); min-width: 20px; }
-    .novel-title { flex: 1; }
-    .novel-tag   { font-size: 10px; color: var(--muted); }
 
     /* アバウトテーブル */
     .about-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
+      font-size: 14px;
     }
     .about-table tr { border-bottom: 1px solid var(--border); }
-    .about-table td { padding: 10px 0; vertical-align: top; }
+    .about-table td { padding: 14px 0; vertical-align: top; }
     .about-table td:first-child {
       color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      width: 90px;
-      padding-top: 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      width: 100px;
+      padding-top: 16px;
     }
 
-    /* 中央・右揃え */
     .center { text-align: center; }
     .right  { text-align: right; }
 
     /* ==============================
-       スマホ対応
+       スマホ対応：ハンバーガーメニュー
     ============================== */
     @media (max-width: 700px) {
-      .wrapper {
-        grid-template-columns: 1fr;
+      .site-header { padding: 40px 20px 0; }
+      .site-title  { font-size: 3rem; margin-bottom: 20px; }
+
+      .menu-toggle { display: flex; }
+
+      .main-nav {
+        display: none;
+        position: fixed;
+        top: 72px;
+        right: 20px;
+        flex-direction: column;
+        gap: 0;
+        width: 220px;
+        margin-bottom: 0;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        z-index: 99;
       }
-      .sidebar {
-        position: static;
-        height: auto;
-        border-right: none;
+      .main-nav.is-open {
+        display: flex;
+      }
+      .main-nav a {
+        width: 100%;
+        text-align: center;
+        padding: 16px 0;
         border-bottom: 1px solid var(--border);
-        padding: 32px 20px 24px;
       }
-      .main {
-        padding: 32px 20px 60px;
+      .main-nav a:last-child {
+        border-bottom: none;
       }
-      .illust-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+
+      .top-visual, .top-visual-placeholder { margin-top: 28px; }
+
+      .main { padding: 48px 20px 70px; }
+      .section { margin-bottom: 60px; }
+      .section-title { font-size: 2.2rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -310,31 +301,38 @@
 </head>
 <body>
 
-<div class="wrapper">
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="site-title">haco</div>
 
-  <!-- サイドバー -->
-  <aside class="sidebar">
-    <div class="corner-box">
-      <span class="corner-bl"></span>
-      <span class="corner-br"></span>
+    <!-- ハンバーガーボタン（スマホのみ表示・右上固定） -->
+    <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-      <!-- 画像用意できたら <img class="sidebar-img" src="photo.jpg" alt=""> に差し替え -->
-     <img class="sidebar-img" src="photo.jpg" alt="">
+    <!-- ナビ：PCは横並び、スマホはハンバーガーで開閉 -->
+    <nav class="main-nav" id="mainNav">
+      <a href="#top">TOP</a>
+      <a href="http://shirohaco.s325.xrea.com/illust/tegalog.cgi?mode=gallery" target="_blank" rel="noopener">絵・漫画</a>
+      <a href="https://example.com/novel" target="_blank" rel="noopener">文</a>
+      <a href="http://shirohaco.s325.xrea.com/diary/tegalog.cgi" target="_blank" rel="noopener">日記</a>
+      <a href="https://wavebox.me/" target="_blank" rel="noopener">拍手</a>
+    </nav>
 
-      <div class="site-title">haco</div>
+    <div class="site-url">http://shiroihaco.github.io</div>
+    <div class="hits">thank you 00000 hits.</div>
+  </header>
 
-      <nav>
-        <a href="#top">information</a>
-        <a href="http://shirohaco.s325.xrea.com/illust/tegalog.cgi?mode=gallery"target="_blank">illust</a>
-        <a href="#contents">novel</a>
-         <a href="http://shirohaco.s325.xrea.com/diary/tegalog.cgi" target="_blank">diary</a>
-        <a href="#about">about</a>
-      </nav>
-
-      <div class="site-url">http://shiroihaco.github.io</div>
-      <div class="hits">thank you 00000 hits.</div>
-    </div>
-  </aside>
+  <!-- TOPビジュアル（ぱくたその写真に差し替え予定） -->
+  <div class="top-visual-placeholder">top visual photo</div>
+  <!-- 画像用意できたら↓に差し替え -->
+  <!--
+  <div class="top-visual">
+    <img src="images/top-photo.jpg" alt="">
+  </div>
+  -->
 
   <!-- メインコンテンツ -->
   <main class="main">
@@ -345,107 +343,43 @@
 
       <span class="badge">about</span>
       <div class="text-block">
-        <p>個人が運営する二次創作サイトです。<br>
-<br>
-<mark>著作権・商標権等の知的財産権は、各公式様に帰属します。<br>
-当サイトは公式関係者とは一切関係ありません。</mark><br>
-<br>
-<B>利用・転載の禁止事項について</B><br>
-当サイトに掲載されている作品・文章等の<br>
-<br>
-<span>
-・無断転載<br>
-・複製、加工<br>
-・AI学習・生成への利用<br>
-・再配布・転載<br>
-</span>
-<br>
-は固くお断りしております。<br>
-
-
-個人で楽しむ範囲を超えた利用はご遠慮ください。</p>
-       
+        <p>夢創作を中心に活動しています。無断転載・無断使用はご遠慮ください。</p>
+        <p><strong>spanで太字</strong></p>
+        <p><mark>markでマーカー</mark></p>
+        <p><em>emで強調</em></p>
+        <p><span class="red">strongで重要事項</span></p>
       </div>
 
-      <p style="margin-bottom:12px;">
+      <p style="margin-bottom:14px;">
         <a href="#top" class="section-link">セクション内リンク</a>
       </p>
-      <p style="margin-bottom:24px;">
+      <p style="margin-bottom:28px;">
         <span class="link-box">class="link" リンク</span>
       </p>
 
-      <p class="center" style="font-size:11px;color:var(--muted);margin-bottom:8px;">div class="center"で中央揃え</p>
-      <p class="right"  style="font-size:11px;color:var(--muted);">div class="right"で右揃え</p>
+      <p class="center" style="font-size:13px;color:var(--muted);margin-bottom:10px;">div class="center"で中央揃え</p>
+      <p class="right"  style="font-size:13px;color:var(--muted);">div class="right"で右揃え</p>
 
       <hr class="divider">
 
-      <div class="info-list">
-        <div class="info-item">
-          <span class="info-date">2025.xx.xx</span>
-          <span>サイトをオープンしました。</span>
-        </div>
-        <div class="info-item">
-          <span class="info-date">2026.06.18</span>
-          <span>お知らせテキストが入ります。</span>
-        </div>
-        <div class="info-item">
-          <span class="info-date">2025.xx.xx</span>
-          <span>お知らせテキストが入ります。</span>
+      <div class="info-box">
+        <div class="info-box-title">更新履歴</div>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-date">2025.xx.xx</span>
+            <span>サイトをオープンしました。</span>
+          </div>
+          <div class="info-item">
+            <span class="info-date">2026.06.18</span>
+            <span>お知らせテキストが入ります。</span>
+          </div>
+          <div class="info-item">
+            <span class="info-date">2025.xx.xx</span>
+            <span>お知らせテキストが入ります。</span>
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- Main contents -->
-    <section class="section" id="contents">
-      <div class="section-title">Main contents</div>
-
-      <span class="badge">illust</span>
-      <div class="illust-grid">
-        <a href="#" target="_blank" rel="noopener" class="category-card">
-          <span class="cat-name">ジャンル A</span>
-          <span class="cat-sub">外部リンク</span>
-          <span class="cat-arrow">→</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="category-card">
-          <span class="cat-name">ジャンル B</span>
-          <span class="cat-sub">外部リンク</span>
-          <span class="cat-arrow">→</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="category-card">
-          <span class="cat-name">ジャンル C</span>
-          <span class="cat-sub">外部リンク</span>
-          <span class="cat-arrow">→</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="category-card">
-          <span class="cat-name">original</span>
-          <span class="cat-sub">外部リンク</span>
-          <span class="cat-arrow">→</span>
-        </a>
-      </div>
-
-      <span class="badge">novel</span>
-      <div class="novel-list">
-        <a href="#" target="_blank" rel="noopener" class="novel-item">
-          <span class="novel-num">1.</span>
-          <span class="novel-title">作品タイトルが入ります</span>
-          <span class="novel-tag">ジャンル A</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="novel-item">
-          <span class="novel-num">2.</span>
-          <span class="novel-title">作品タイトルが入ります</span>
-          <span class="novel-tag">ジャンル B</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="novel-item">
-          <span class="novel-num">3.</span>
-          <span class="novel-title">作品タイトルが入ります</span>
-          <span class="novel-tag">original</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- about -->
-    <section class="section" id="about">
-      <div class="section-title">about</div>
+      <hr class="divider">
 
       <span class="badge">profile</span>
       <table class="about-table">
@@ -464,22 +398,37 @@
         <tr>
           <td>links</td>
           <td>
-            <a href="https://www.pixiv.net/users/11138866" target="_blank" rel="noopener" class="link-box" style="margin-right:8px;">pixiv</a>
-            <a href="https://twitter.com/shiroi_45" target="_blank" rel="noopener" class="link-box">X (Twitter)</a>
+            <a href="http://shirohaco.s325.xrea.com/illust/tegalog.cgi?mode=gallery" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">絵・漫画</a>
+            <a href="https://example.com/novel" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">文</a>
+            <a href="#" target="_blank" rel="noopener" class="link-box" style="margin-right:10px;">pixiv</a>
+            <a href="#" target="_blank" rel="noopener" class="link-box">X (Twitter)</a>
           </td>
         </tr>
       </table>
     </section>
 
   </main>
-</div>
 
 <script>
-  document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+  // ハンバーガーメニューの開閉
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // ナビリンククリックでスムーススクロール＋スマホはメニューを閉じる
+  document.querySelectorAll('.main-nav a').forEach(a => {
     a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (a.getAttribute('href').startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      mainNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
     });
   });
 </script>
